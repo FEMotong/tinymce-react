@@ -1,0 +1,9 @@
+.free-editor {
+    position: relative;
+    border: 1px solid lightgrey;
+  }
+
+  .free-editor:hover {
+    position: relative;
+    border: 1px solid lightskyblue;
+  }
