@@ -1,6 +1,8 @@
 import React from 'react';
 import tinymce from 'tinymce/tinymce';
 import './index.css'
+import SplitPane from 'react-split-pane';
+import Pane from 'react-split-pane/lib/Pane'
 
 class TinymceReact extends React.Component {
     componentDidMount() {
@@ -35,9 +37,53 @@ class TinymceReact extends React.Component {
     render() {
       return (
         <>
-          <div className='free-editor'>
-                  TinyMCE is incredibly flexible, and with hundreds of APIs!
-          </div>
+            {/* Horizontal */}
+            <SplitPane split="horizontal">
+                <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 1
+                  </div>
+                </Pane>
+              <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 2
+                  </div>
+              </Pane>
+              <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 3
+                  </div>
+              </Pane>
+              <Pane maxSize="50%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 4
+                  </div>
+              </Pane>
+            </SplitPane>
+            <br />
+            {/* Multiple Vertical */}
+            <SplitPane split="vertical">
+                <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 1
+                  </div>
+                </Pane>
+              <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 2
+                  </div>
+              </Pane>
+              <Pane maxSize="35%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 3
+                  </div>
+              </Pane>
+              <Pane maxSize="50%">
+                  <div className='free-editor'>
+                      TinyMCE is incredibly flexible, and with hundreds of APIs! 4
+                  </div>
+              </Pane>
+            </SplitPane>
         </>
       )
     }
