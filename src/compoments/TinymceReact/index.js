@@ -6,6 +6,7 @@ class TinymceReact extends React.Component {
     componentDidMount() {
       const dfreeBodyConfig = {
             selector: '.free-editor',
+            language:'zh_CN',
             inline: true,
             menubar: false,  // 隐藏最上方menu菜单
             toolbar: false, // 隐藏工具栏
