@@ -5,6 +5,19 @@ import SplitPane from 'react-split-pane';
 import Pane from 'react-split-pane/lib/Pane'
 
 class TinymceReact extends React.Component {
+    constructor(props) {
+        super(props) 
+        this.state = {
+            dataMock: {
+                list: [
+                    {content: "one"},
+                    {content: "two"},
+                    {content: "three"},
+                    {content: "four"},
+                ]
+            }
+        }
+    }
     componentDidMount() {
       const dfreeBodyConfig = {
             selector: '.free-editor',
@@ -34,56 +47,43 @@ class TinymceReact extends React.Component {
         tinymce.init(dfreeBodyConfig); // 初始化配置
     }
 
+   getUpdataData = (dataMock) => {
+       let area0 = this.refs.freeEditor0.innerHTML
+       let area1 = this.refs.freeEditor1.innerHTML
+       let area2 = this.refs.freeEditor2.innerHTML
+       let area3 = this.refs.freeEditor3.innerHTML
+       this.setState({
+        dataMock: {
+            list: [
+                {content: area0},
+                {content: area1},
+                {content: area2},
+                {content: area3},
+            ]
+        }
+       })
+    }
+
     render() {
+        let {dataMock} = this.state
       return (
         <>
-            {/* Horizontal */}
-            <SplitPane split="horizontal">
-                <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 1
-                  </div>
-                </Pane>
-              <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 2
-                  </div>
-              </Pane>
-              <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 3
-                  </div>
-              </Pane>
-              <Pane maxSize="50%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 4
-                  </div>
-              </Pane>
-            </SplitPane>
-            <br />
             {/* Multiple Vertical */}
             <SplitPane split="vertical">
                 <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 1
-                  </div>
+                  <div className='free-editor' ref="freeEditor0" dangerouslySetInnerHTML={{__html:dataMock.list[0]["content"]}} />
                 </Pane>
               <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 2
-                  </div>
+                  <div className='free-editor' ref="freeEditor1" dangerouslySetInnerHTML={{__html:dataMock.list[1]["content"]}} />
               </Pane>
               <Pane maxSize="35%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 3
-                  </div>
+                  <div className='free-editor' ref="freeEditor2" dangerouslySetInnerHTML={{__html:dataMock.list[2]["content"]}} />
               </Pane>
               <Pane maxSize="50%">
-                  <div className='free-editor'>
-                      TinyMCE is incredibly flexible, and with hundreds of APIs! 4
-                  </div>
+                  <div className='free-editor' ref="freeEditor3" dangerouslySetInnerHTML={{__html:dataMock.list[3]["content"]}} />
               </Pane>
             </SplitPane>
+            <button onClick={() => this.getUpdataData(dataMock)}>get update data</button>
         </>
       )
     }
