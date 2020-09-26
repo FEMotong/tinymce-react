@@ -69,20 +69,28 @@ class TinymceReact extends React.Component {
       return (
         <>
             {/* Multiple Vertical */}
-            <SplitPane split="vertical">
-                <Pane maxSize="35%">
-                  <div className='free-editor' ref="freeEditor0" dangerouslySetInnerHTML={{__html:dataMock.list[0]["content"]}} />
-                </Pane>
-              <Pane maxSize="35%">
-                  <div className='free-editor' ref="freeEditor1" dangerouslySetInnerHTML={{__html:dataMock.list[1]["content"]}} />
-              </Pane>
-              <Pane maxSize="35%">
-                  <div className='free-editor' ref="freeEditor2" dangerouslySetInnerHTML={{__html:dataMock.list[2]["content"]}} />
-              </Pane>
-              <Pane maxSize="50%">
-                  <div className='free-editor' ref="freeEditor3" dangerouslySetInnerHTML={{__html:dataMock.list[3]["content"]}} />
-              </Pane>
-            </SplitPane>
+           {
+             dataMock.list.map((item, index) => {
+               if(index < 2) {
+                return (
+                  <SplitPane split="vertical">
+                      <Pane maxSize="35%">
+                        <div className='free-editor' ref="freeEditor0" dangerouslySetInnerHTML={{__html: item["content"]}} />
+                      </Pane>
+                    <Pane maxSize="35%">
+                        <div className='free-editor' ref="freeEditor1" dangerouslySetInnerHTML={{__html: item["content"]}} />
+                    </Pane>
+                    <Pane maxSize="35%">
+                        <div className='free-editor' ref="freeEditor2" dangerouslySetInnerHTML={{__html: item["content"]}} />
+                    </Pane>
+                    <Pane maxSize="50%">
+                        <div className='free-editor' ref="freeEditor3" dangerouslySetInnerHTML={{__html: item["content"]}} />
+                    </Pane>
+                  </SplitPane>
+                )
+               }  
+            })
+           }
             <button onClick={() => this.getUpdataData(dataMock)}>get update data</button>
         </>
       )
